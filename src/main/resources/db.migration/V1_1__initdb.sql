@@ -1,0 +1,2 @@
+-- insert into users(id, name, password_hash) values
+--     ((select nextval('users_seq')), 'Adelina', 'adelina');

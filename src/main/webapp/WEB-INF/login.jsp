@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Welcome!</title>
+    <title>Login</title>
     <meta charset="utf-8"/>
+
 </head>
 <body>
 <h1>Вход на страницу пользователя</h1>
@@ -15,11 +16,9 @@
 
     <div>
         <label for="password">Введите пароль:</label>
-        <input id="password" name="password" type="text">
+        <input id="password" name="password" type="password">
     </div>
     <button type="submit">Ok</button>
 </form>
-
-
 </body>
 </html>

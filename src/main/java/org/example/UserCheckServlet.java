@@ -1,12 +1,12 @@
 package org.example;
 
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,35 +20,47 @@ import java.util.UUID;
 @WebServlet("/usercheck")
 public class UserCheckServlet extends HttpServlet {
 
-    private static String SECRET_KEY = "password";
-    private static String SECRET_KEY_NAME = "secret_key";
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("name");
         String userPassword = request.getParameter("password");
 
-        String sql = "SELECT * FROM users WHERE name = ? AND password = ?";
 
+
+        String sql = "SELECT * FROM users WHERE name = ?";
+//        String sql = "INSERT INTO users (name, password_hash) VALUES (?,?)";
         try  {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
+            BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+            String salt = BCrypt.gensalt(10);
+            String hash = BCrypt.hashpw(userPassword, salt);
             preparedStatement.setString(1, userName);
-            preparedStatement.setString(2, userPassword);
+//            preparedStatement.setString(2, hash);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                UUID uuid = UUID.randomUUID();
 
-                Map<UUID, Long> authentificationData =
-                        (Map<UUID, Long>) request.getServletContext().getAttribute("AUTH_DATA");
-                authentificationData.put(uuid,resultSet.getLong("id"));
-//                request.getServletContext().setAttribute("AUTH_DATA", authentificationData);
-                response.addCookie(new Cookie("SECRET_KEY", uuid.toString()));
-                response.sendRedirect(getServletContext().getContextPath() + "/index");
-            } else {
+                if (bCrypt.matches(userPassword,
+                        resultSet.getString("password_hash"))){
+                    UUID uuid = UUID.randomUUID();
+
+                    Map<UUID, Long> authentificationData =
+                            (Map<UUID, Long>) request.getServletContext().getAttribute("USER_SESSIONS");
+                    authentificationData.put(uuid,resultSet.getLong("id"));
+                    // JSESSIONID
+                    // Клиент получит действующую куку
+                    HttpSession session = request.getSession();
+                    // Сохраним в сессии пользователя его имя
+                    session.setAttribute("user", userName);
+                    session.setAttribute("SECRET_KEY", uuid.toString());
+                    response.sendRedirect(getServletContext().getContextPath() + "/index");
+                }else{
+                    response.sendRedirect(getServletContext().getContextPath() + "/login");
+                }
+            }else {
                 response.sendRedirect(getServletContext().getContextPath() + "/login");
             }
+//            response.sendRedirect(getServletContext().getContextPath() + "/index");
             preparedStatement.close();
             resultSet.close();
 
@@ -59,16 +71,5 @@ public class UserCheckServlet extends HttpServlet {
         }
 
     }
-//    @Override
-//    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("UTF-8");
-//        response.setContentType("text/html;charset=UTF-8");
-//
-//        String name = request.getParameter("name");
-//        String password = request.getParameter("password");
-//
-//        response.sendRedirect(getServletContext().getContextPath() +
-//                "/usercheck?userName=" + name + "&userPassword=" + password);
-//
-//    }
+
 }

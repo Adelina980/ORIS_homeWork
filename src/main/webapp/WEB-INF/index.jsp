@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Секретная страница</h1>
-
+<p>Привет, ${username}</p>
 
 </body>
 </html>

@@ -1,21 +1,38 @@
 package org.example;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
+
+
 @WebServlet("/index")
 public class IndexPageServlet extends HttpServlet {
+    final static Logger logger = (Logger) LogManager.getLogger(IndexPageServlet.class);
+
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        response.setContentType("text/html; charset=UTF-8");
-        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request,response);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        String username = (String) request.getSession(false)
+                .getAttribute("user");
+
+        logger.debug(username);
+        logger.info(username + "-info");
+        logger.error(username + "-error");
+
+
+        request.setAttribute("username", username);
+
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+//        request.getRequestDispatcher("index.ftl").forward(request,response);
     }
 }
 
