@@ -1,0 +1,21 @@
+2024-12-13 22:41:48,478 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.resource.ResourceNameValidator- 2 SQL migrations were detected but not run because they did not follow the filename convention.
+2024-12-13 22:41:48,480 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.resource.ResourceNameValidator- Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+2024-12-13 22:41:48,482 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.FlywayExecutor- Database: jdbc:postgresql://localhost:5432/Pagination (PostgreSQL 17.1)
+2024-12-13 22:41:48,502 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbValidate- Successfully validated 0 migrations (execution time 00:00.007s)
+2024-12-13 22:41:48,503 [RMI TCP Connection(2)-127.0.0.1] WARN  org.flywaydb.core.internal.command.DbValidate- No migrations found. Are your locations set up correctly?
+2024-12-13 22:41:48,529 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbMigrate- Current version of schema "public": << Empty Schema >>
+2024-12-13 22:41:48,530 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbMigrate- Schema "public" is up to date. No migration necessary.
+2024-12-13 22:44:18,569 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.resource.ResourceNameValidator- 2 SQL migrations were detected but not run because they did not follow the filename convention.
+2024-12-13 22:44:18,571 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.resource.ResourceNameValidator- Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+2024-12-13 22:44:18,573 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.FlywayExecutor- Database: jdbc:postgresql://localhost:5432/Pagination (PostgreSQL 17.1)
+2024-12-13 22:44:18,593 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbValidate- Successfully validated 0 migrations (execution time 00:00.008s)
+2024-12-13 22:44:18,593 [RMI TCP Connection(2)-127.0.0.1] WARN  org.flywaydb.core.internal.command.DbValidate- No migrations found. Are your locations set up correctly?
+2024-12-13 22:44:18,617 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbMigrate- Current version of schema "public": << Empty Schema >>
+2024-12-13 22:44:18,619 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbMigrate- Schema "public" is up to date. No migration necessary.
+2024-12-13 22:46:55,903 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.resource.ResourceNameValidator- 2 SQL migrations were detected but not run because they did not follow the filename convention.
+2024-12-13 22:46:55,905 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.resource.ResourceNameValidator- Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+2024-12-13 22:46:55,907 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.FlywayExecutor- Database: jdbc:postgresql://localhost:5432/Pagination (PostgreSQL 17.1)
+2024-12-13 22:46:55,928 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbValidate- Successfully validated 0 migrations (execution time 00:00.008s)
+2024-12-13 22:46:55,928 [RMI TCP Connection(2)-127.0.0.1] WARN  org.flywaydb.core.internal.command.DbValidate- No migrations found. Are your locations set up correctly?
+2024-12-13 22:46:55,953 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbMigrate- Current version of schema "public": << Empty Schema >>
+2024-12-13 22:46:55,954 [RMI TCP Connection(2)-127.0.0.1] INFO  org.flywaydb.core.internal.command.DbMigrate- Schema "public" is up to date. No migration necessary.
